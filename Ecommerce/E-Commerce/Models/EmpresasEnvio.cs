@@ -10,6 +10,6 @@ namespace Base_de_datos
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
-        public string Contacto { get; set; }s
+        public string Contacto { get; set; }
     }
 }
