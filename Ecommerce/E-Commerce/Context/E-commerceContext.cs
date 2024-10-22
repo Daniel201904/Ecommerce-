@@ -19,6 +19,14 @@ namespace E_Commerce.Context
         public DbSet<EmpresasEnvio> EmpresasEnvios { get; set; }
         public DbSet<Envios> Envios { get; set; }
         public DbSet<EstadisticasVentas> EstadisticasVentas { get; set; }
+        public DbSet<ImagenProducto> ImagenProducto { get; set; }
+        public DbSet<Inventarios> Inventarios { get; set; }
+        public DbSet<LogsSistema> LogsSistema { get; set; }
+        public DbSet<Notificaciones> Notificaciones { get; set; }
+        public DbSet<Pedidos> Pedidos { get; set; }
+        public DbSet<Permiso> Permiso { get; set; }
+        public DbSet<Productos> Productos { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -102,6 +110,71 @@ namespace E_Commerce.Context
             modelBuilder.Entity<EstadisticasVentas>().Property(u => u.CantidadVendida).HasColumnName("CantidadVendida");
             modelBuilder.Entity<EstadisticasVentas>().Property(u => u.IngresosGenerados).HasColumnName("IngresosGenerados");
             modelBuilder.Entity<EstadisticasVentas>().Property(u => u.FechaReporte).HasColumnName("FechaReporte");
+
+            //Tabla ImagenProducto
+            modelBuilder.Entity<ImagenProducto>().ToTable("ImagenProducto");
+            modelBuilder.Entity<ImagenProducto>().HasKey(u => u.Id);
+            modelBuilder.Entity<ImagenProducto>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<ImagenProducto>().Property(u => u.UrlImagen).HasColumnName("UrlImagen");
+            modelBuilder.Entity<ImagenProducto>().Property(u => u.ProductoId).HasColumnName("ProductoId");
+            modelBuilder.Entity<ImagenProducto>().Property(u => u.Producto).HasColumnName("Producto");
+
+            //Tabla Inventarios
+            modelBuilder.Entity<Inventarios>().ToTable("Inventarios");
+            modelBuilder.Entity<Inventarios>().HasKey(u => u.Id);
+            modelBuilder.Entity<Inventarios>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Inventarios>().Property(u => u.ProductoId).HasColumnName("ProductoId");
+            modelBuilder.Entity<Inventarios>().Property(u => u.Producto).HasColumnName("Producto");
+            modelBuilder.Entity<Inventarios>().Property(u => u.Cantidad).HasColumnName("Cantidad");
+            modelBuilder.Entity<Inventarios>().Property(u => u.UltimaActualizacion).HasColumnName("UltimaActualizacion");
+
+            //Tabla LogsSistema
+            modelBuilder.Entity<LogsSistema>().ToTable("LogsSistema");
+            modelBuilder.Entity<LogsSistema>().HasKey(u => u.Id);
+            modelBuilder.Entity<LogsSistema>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<LogsSistema>().Property(u => u.Nivel).HasColumnName("Nivel");
+            modelBuilder.Entity<LogsSistema>().Property(u => u.Mensaje).HasColumnName("Mensaje");
+            modelBuilder.Entity<LogsSistema>().Property(u => u.FechaLog).HasColumnName("FechaLog");
+
+            //Tabla Notificaciones
+            modelBuilder.Entity<Notificaciones>().ToTable("Notificaciones");
+            modelBuilder.Entity<Notificaciones>().HasKey(u => u.Id);
+            modelBuilder.Entity<Notificaciones>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Notificaciones>().Property(u => u.Titulo).HasColumnName("Titulo");
+            modelBuilder.Entity<Notificaciones>().Property(u => u.Mensaje).HasColumnName("Mensaje");
+            modelBuilder.Entity<Notificaciones>().Property(u => u.FechaEnvio).HasColumnName("FechaEnvio");
+
+            //Tabla Pedidos
+            modelBuilder.Entity<Pedidos>().ToTable("Pedidos");
+            modelBuilder.Entity<Pedidos>().HasKey(u => u.Id);
+            modelBuilder.Entity<Pedidos>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Pedidos>().Property(u => u.ClienteId).HasColumnName("ClienteId");
+            modelBuilder.Entity<Pedidos>().Property(u => u.Cliente).HasColumnName("Cliente");
+            modelBuilder.Entity<Pedidos>().Property(u => u.Estado).HasColumnName("Estado");
+            modelBuilder.Entity<Pedidos>().Property(u => u.Total).HasColumnName("Total");
+            modelBuilder.Entity<Pedidos>().Property(u => u.FechaPedido).HasColumnName("FechaPedido");
+            modelBuilder.Entity<Pedidos>().Property(u => u.Detalles).HasColumnName("Detalles");
+
+            //tabla Permiso
+            modelBuilder.Entity<Permiso>().ToTable("Permiso");
+            modelBuilder.Entity<Permiso>().HasKey(u => u.Id);
+            modelBuilder.Entity<Permiso>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Permiso>().Property(u => u.Nombre).HasColumnName("Nombre");
+
+            //Tabla Productos
+            modelBuilder.Entity<Productos>().ToTable("Productos");
+            modelBuilder.Entity<Productos>().HasKey(u => u.Id);
+            modelBuilder.Entity<Productos>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Productos>().Property(u => u.Nombre).HasColumnName("Nombre");
+            modelBuilder.Entity<Productos>().Property(u => u.Descripcion).HasColumnName("Descripcion");
+            modelBuilder.Entity<Productos>().Property(u => u.Precio).HasColumnName("Precio");
+            modelBuilder.Entity<Productos>().Property(u => u.Stock).HasColumnName("Stock");
+            modelBuilder.Entity<Productos>().Property(u => u.FechaCreacion).HasColumnName("FechaCreacion");
+            modelBuilder.Entity<Productos>().Property(u => u.CategoriaId).HasColumnName("CategoriaId");
+            modelBuilder.Entity<Productos>().Property(u => u.Categoria).HasColumnName("Categoria");
+            modelBuilder.Entity<Productos>().Property(u => u.VendedorId).HasColumnName("VendedorId");
+            modelBuilder.Entity<Productos>().Property(u => u.Vendedor).HasColumnName("Vendedor");
+            modelBuilder.Entity<Productos>().Property(u => u.Imagenes).HasColumnName("Imagenes");
         }
 
         public async Task<bool> SaveAsync()
