@@ -37,6 +37,7 @@ namespace E_Commerce.Context
             modelBuilder.Entity<Categoria>().Property(u => u.Nombre).HasColumnName("Nombre");
             modelBuilder.Entity<Categoria>().Property(u => u.Productos).HasColumnName("Productos");
         }
+        a
        
         public async Task<bool> SaveAsync()
         {
