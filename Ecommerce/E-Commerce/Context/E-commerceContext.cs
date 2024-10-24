@@ -26,6 +26,17 @@ namespace E_Commerce.Context
         public DbSet<Pedidos> Pedidos { get; set; }
         public DbSet<Permiso> Permiso { get; set; }
         public DbSet<Productos> Productos { get; set; }
+        public DbSet<Promociones> Promociones { get; set; }
+        public DbSet<ReporteAcciones> ReporteAcciones { get; set; }
+        public DbSet<RespuestasFAQ> RespuestasFAQ { get; set; }
+        public DbSet<Rol> Rol { get; set; }
+        public DbSet<RolesPermisos> RolesPermisos { get; set; }
+        public DbSet<TicketsSoporte> TicketsSoporte { get; set; }
+        public DbSet<Tokens> Tokens { get; set; }
+        public DbSet<TrackingEnvio> TrackingEnvio { get; set; }
+        public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<UsuariosNotificados> UsuariosNotificados { get; set; }
+        public DbSet<Valoraciones> Valoraciones { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -38,10 +49,10 @@ namespace E_Commerce.Context
         {
             //tabla auditorias
             modelBuilder.Entity<Auditorias>().ToTable("Auditorias");
-            modelBuilder.Entity<Auditorias> ().HasKey(u => u.Id);
-            modelBuilder.Entity<Auditorias> ().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
-            modelBuilder.Entity<Auditorias> ().Property(u => u.UsuarioId).HasColumnName("UsuarioId");
-            modelBuilder.Entity<Auditorias> ().Property(u => u.Usuario).HasColumnName("Usuario");
+            modelBuilder.Entity<Auditorias>().HasKey(u => u.Id);
+            modelBuilder.Entity<Auditorias>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Auditorias>().Property(u => u.UsuarioId).HasColumnName("UsuarioId");
+            modelBuilder.Entity<Auditorias>().Property(u => u.Usuario).HasColumnName("Usuario");
             modelBuilder.Entity<Auditorias>().Property(u => u.Accion).HasColumnName("Accion");
             modelBuilder.Entity<Auditorias>().Property(u => u.FechaAccion).HasColumnName("FechaAccion");
 
@@ -68,7 +79,7 @@ namespace E_Commerce.Context
             modelBuilder.Entity<Cupones>().HasKey(u => u.Id);
             modelBuilder.Entity<Cupones>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
             modelBuilder.Entity<Cupones>().Property(u => u.ProductoId).HasColumnName("ProductoId");
-            modelBuilder.Entity<Cupones>().Property(u => u.Producto).HasColumnName("Producto"); 
+            modelBuilder.Entity<Cupones>().Property(u => u.Producto).HasColumnName("Producto");
             modelBuilder.Entity<Cupones>().Property(u => u.PromocionId).HasColumnName("PromocionId");
             modelBuilder.Entity<Cupones>().Property(u => u.Promocion).HasColumnName("Promocion");
 
@@ -175,6 +186,113 @@ namespace E_Commerce.Context
             modelBuilder.Entity<Productos>().Property(u => u.VendedorId).HasColumnName("VendedorId");
             modelBuilder.Entity<Productos>().Property(u => u.Vendedor).HasColumnName("Vendedor");
             modelBuilder.Entity<Productos>().Property(u => u.Imagenes).HasColumnName("Imagenes");
+
+            //tabla Promociones
+            modelBuilder.Entity<Promociones>().ToTable("Promociones");
+            modelBuilder.Entity<Promociones>().HasKey(u => u.Id);
+            modelBuilder.Entity<Promociones>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Promociones>().Property(u => u.Nombre).HasColumnName("Nombre");
+            modelBuilder.Entity<Promociones>().Property(u => u.Descuento).HasColumnName("Descuento");
+            modelBuilder.Entity<Promociones>().Property(u => u.FechaInicio).HasColumnName("FechaInicio");
+            modelBuilder.Entity<Promociones>().Property(u => u.FechaFin).HasColumnName("FechaFin");
+
+            //tabla ReporteAcciones
+            modelBuilder.Entity<ReporteAcciones>().ToTable("ReporteAcciones");
+            modelBuilder.Entity<ReporteAcciones>().HasKey(u => u.Id);
+            modelBuilder.Entity<ReporteAcciones>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<ReporteAcciones>().Property(u => u.UsuarioId).HasColumnName("UsuarioId");
+            modelBuilder.Entity<ReporteAcciones>().Property(u => u.Usuario).HasColumnName("Usuario");
+            modelBuilder.Entity<ReporteAcciones>().Property(u => u.Descripcion).HasColumnName("Descripcion");
+            modelBuilder.Entity<ReporteAcciones>().Property(u => u.FechaReporte).HasColumnName("FechaReporte");
+
+            //tabla RespuestasFAQ
+            modelBuilder.Entity<RespuestasFAQ>().ToTable("RespuestasFAQ");
+            modelBuilder.Entity<RespuestasFAQ>().HasKey(u => u.Id);
+            modelBuilder.Entity<RespuestasFAQ>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<RespuestasFAQ>().Property(u => u.Pregunta).HasColumnName("Pregunta");
+            modelBuilder.Entity<RespuestasFAQ>().Property(u => u.Respuesta).HasColumnName("Respuesta");
+
+            //tabla Rol
+            modelBuilder.Entity<Rol>().ToTable("Rol");
+            modelBuilder.Entity<Rol>().HasKey(u => u.Id);
+            modelBuilder.Entity<Rol>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Rol>().Property(u => u.Nombre).HasColumnName("Nombre");
+            modelBuilder.Entity<Rol>().Property(u => u.Usuarios).HasColumnName("Usuarios");
+
+            //tabla RolesPermisos
+            modelBuilder.Entity<RolesPermisos>().ToTable("RolesPermisos");
+            modelBuilder.Entity<RolesPermisos>().HasKey(u => u.Id);
+            modelBuilder.Entity<RolesPermisos>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<RolesPermisos>().Property(u => u.RolId).HasColumnName("RolId");
+            modelBuilder.Entity<RolesPermisos>().Property(u => u.Rol).HasColumnName("Rol");
+            modelBuilder.Entity<RolesPermisos>().Property(u => u.PermisoId).HasColumnName("PermisoId");
+            modelBuilder.Entity<RolesPermisos>().Property(u => u.Permiso).HasColumnName("Permiso");
+
+            //tabla TicketsSoporte
+            modelBuilder.Entity<TicketsSoporte>().ToTable("TicketsSoporte");
+            modelBuilder.Entity<TicketsSoporte>().HasKey(u => u.Id);
+            modelBuilder.Entity<TicketsSoporte>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<TicketsSoporte>().Property(u => u.UsuarioId).HasColumnName("UsuarioId");
+            modelBuilder.Entity<TicketsSoporte>().Property(u => u.Usuario).HasColumnName("Usuario");
+            modelBuilder.Entity<TicketsSoporte>().Property(u => u.Titulo).HasColumnName("Titulo");
+            modelBuilder.Entity<TicketsSoporte>().Property(u => u.Descripcion).HasColumnName("Descripcion");
+            modelBuilder.Entity<TicketsSoporte>().Property(u => u.Estado).HasColumnName("Estado");
+            modelBuilder.Entity<TicketsSoporte>().Property(u => u.FechaCreacion).HasColumnName("FechaCreacion");
+
+            //tabla Tokens
+            modelBuilder.Entity<Tokens>().ToTable("Tokens");
+            modelBuilder.Entity<Tokens>().HasKey(u => u.Id);
+            modelBuilder.Entity<Tokens>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Tokens>().Property(u => u.UsuarioId).HasColumnName("UsuarioId");
+            modelBuilder.Entity<Tokens>().Property(u => u.Usuario).HasColumnName("Usuario");
+            modelBuilder.Entity<Tokens>().Property(u => u.TokenValue).HasColumnName("TokenValue");
+            modelBuilder.Entity<Tokens>().Property(u => u.Expira).HasColumnName("Expira");
+
+            //tabla TrackingEnvio
+            modelBuilder.Entity<TrackingEnvio>().ToTable("TrackingEnvio");
+            modelBuilder.Entity<TrackingEnvio>().HasKey(u => u.Id);
+            modelBuilder.Entity<TrackingEnvio>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<TrackingEnvio>().Property(u => u.EnvioId).HasColumnName("EnvioId");
+            modelBuilder.Entity<TrackingEnvio>().Property(u => u.Envio).HasColumnName("Envio");
+            modelBuilder.Entity<TrackingEnvio>().Property(u => u.Estado).HasColumnName("Estado");
+            modelBuilder.Entity<TrackingEnvio>().Property(u => u.Ubicacion).HasColumnName("Ubicacion");
+            modelBuilder.Entity<TrackingEnvio>().Property(u => u.Fecha).HasColumnName("Fecha");
+
+            //tabla Usuarios
+            modelBuilder.Entity<Usuarios>().ToTable("Usuarios");
+            modelBuilder.Entity<Usuarios>().HasKey(u => u.Id);
+            modelBuilder.Entity<Usuarios>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Usuarios>().Property(u => u.Nombre).HasColumnName("Nombre");
+            modelBuilder.Entity<Usuarios>().Property(u => u.Correo).HasColumnName("Correo");
+            modelBuilder.Entity<Usuarios>().Property(u => u.Contraseña).HasColumnName("Contraseña");
+            modelBuilder.Entity<Usuarios>().Property(u => u.Telefono).HasColumnName("Telefono");
+            modelBuilder.Entity<Usuarios>().Property(u => u.Direccion).HasColumnName("Direccion");
+            modelBuilder.Entity<Usuarios>().Property(u => u.TipoUsuario).HasColumnName("TipoUsuario");
+            modelBuilder.Entity<Usuarios>().Property(u => u.FechaCreacion).HasColumnName("FechaCreacion");
+            modelBuilder.Entity<Usuarios>().Property(u => u.Pedidos).HasColumnName("Pedidos");
+            modelBuilder.Entity<Usuarios>().Property(u => u.Productos).HasColumnName("Productos");
+
+            //tabla UsuariosNotificados
+            modelBuilder.Entity<UsuariosNotificados>().ToTable("UsuariosNotificados");
+            modelBuilder.Entity<UsuariosNotificados>().HasKey(u => u.Id);
+            modelBuilder.Entity<UsuariosNotificados>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<UsuariosNotificados>().Property(u => u.UsuarioId).HasColumnName("UsuarioId");
+            modelBuilder.Entity<UsuariosNotificados>().Property(u => u.Usuario).HasColumnName("Usuario");
+            modelBuilder.Entity<UsuariosNotificados>().Property(u => u.NotificacionId).HasColumnName("NotificacionId");
+            modelBuilder.Entity<UsuariosNotificados>().Property(u => u.Notificacion).HasColumnName("Notificacion");
+            modelBuilder.Entity<UsuariosNotificados>().Property(u => u.Leido).HasColumnName("Leido");
+            modelBuilder.Entity<UsuariosNotificados>().Property(u => u.FechaLeido).HasColumnName("FechaLeido");
+
+            //tabla Valoraciones
+            modelBuilder.Entity<Valoraciones>().ToTable("Valoraciones");
+            modelBuilder.Entity<Valoraciones>().HasKey(u => u.Id);
+            modelBuilder.Entity<Valoraciones>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<Valoraciones>().Property(u => u.UsuarioId).HasColumnName("UsuarioId");
+            modelBuilder.Entity<Valoraciones>().Property(u => u.Usuario).HasColumnName("Usuario");
+            modelBuilder.Entity<Valoraciones>().Property(u => u.ProductoId).HasColumnName("ProductoId");
+            modelBuilder.Entity<Valoraciones>().Property(u => u.Producto).HasColumnName("Producto");
+            modelBuilder.Entity<Valoraciones>().Property(u => u.Valor).HasColumnName("Valor");
+            modelBuilder.Entity<Valoraciones>().Property(u => u.FechaValoracion).HasColumnName("FechaValoracion");
         }
 
         public async Task<bool> SaveAsync()
