@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Base_de_datos
+namespace E_Commerce.Models
 {
     public class Notificaciones
     {
