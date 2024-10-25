@@ -8,6 +8,7 @@ namespace E_Commerce.Models
 {
      public class Valoraciones
      {
+
         public int Id { get; set; }
         public int UsuarioId { get; set; }
         public Usuarios Usuario { get; set; } 
