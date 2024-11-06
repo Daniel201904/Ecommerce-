@@ -26,5 +26,17 @@ namespace E_Commerce.Repositories
             await context.SaveAsync();
             return true;
         }
+        public async Task<bool> PutReporteAcciones(ReporteAcciones reporteAcciones)
+        {
+            context.ReporteAcciones.Update(reporteAcciones);
+            await context.SaveAsync();
+            return true;
+        }
+        public async Task<bool> DeleteReporteAcciones(ReporteAcciones reporteAcciones)
+        {
+            context.ReporteAcciones.Remove(reporteAcciones);
+            await context.SaveAsync();
+            return true;
+        }
     }
 }

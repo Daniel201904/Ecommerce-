@@ -6,5 +6,7 @@ namespace E_Commerce.Repositories.Interfaces
     {
         Task<List<Productos>> GetProductos();
         Task<bool> PostProductos(Productos productos);
+        Task<bool> PutProductos(Productos productos);
+        Task<bool> DeleteProductos(Productos productos);
     }
 }

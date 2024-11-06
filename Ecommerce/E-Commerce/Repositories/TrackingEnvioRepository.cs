@@ -26,5 +26,17 @@ namespace E_Commerce.Repositories
             await context.SaveAsync();
             return true;
         }
+        public async Task<bool> PutTrackingEnvio(TrackingEnvio trackingEnvio)
+        {
+            context.TrackingEnvio.Update(trackingEnvio);
+            await context.SaveAsync();
+            return true;
+        }
+        public async Task<bool> DeleteTrackingEnvio(TrackingEnvio trackingEnvio)
+        {
+            context.TrackingEnvio.Remove(trackingEnvio);
+            await context.SaveAsync();
+            return true;
+        }
     }
 }

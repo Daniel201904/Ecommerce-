@@ -5,5 +5,7 @@ namespace E_Commerce.Repositories.Interfaces
     {
         Task<List<UsuariosNotificados>> GetUsuariosNotificados();
         Task<bool> PostUsuariosNotificados(UsuariosNotificados usuariosNotificados);
+        Task<bool> PutUsuariosNotificados(UsuariosNotificados usuariosNotificados);
+        Task<bool> DeleteUsuariosNotificados(UsuariosNotificados usuariosNotificados);
     }
 }

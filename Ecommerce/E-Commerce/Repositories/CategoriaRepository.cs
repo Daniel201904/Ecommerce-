@@ -25,5 +25,17 @@ namespace E_Commerce.Repositories
             await context.SaveAsync();
             return true;
         }
+        public async Task<bool> PutCategoria(Categoria categoria)
+        {
+            context.Categoria.Update(categoria);
+            await context.SaveAsync();
+            return true;
+        }
+        public async Task<bool> DeleteCategoria(Categoria categoria)
+        {
+            context.Categoria.Remove(categoria);
+            await context.SaveAsync();
+            return true;
+        }
     }
 }

@@ -5,5 +5,7 @@ namespace E_Commerce.Repositories.Interfaces
     {
         Task<List<Tokens>> GetTokens();
         Task<bool> PostTokens(Tokens tokens);
+        Task<bool> PutTokens(Tokens tokens);
+        Task<bool> DeleteTokens(Tokens tokens);
     }
 }

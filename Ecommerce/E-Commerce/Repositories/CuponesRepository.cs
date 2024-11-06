@@ -26,5 +26,17 @@ namespace E_Commerce.Repositories
             await context.SaveAsync();
             return true;
         }
+        public async Task<bool> PutCupones(Cupones cupones)
+        {
+            context.Cupones.Update(cupones);
+            await context.SaveAsync();
+            return true;
+        }
+        public async Task<bool> DeleteCupones(Cupones cupones)
+        {
+            context.Cupones.Remove(cupones);
+            await context.SaveAsync();
+            return true;
+        }
     }
 }

@@ -5,5 +5,7 @@ namespace E_Commerce.Repositories.Interfaces
     {
         Task<List<ReporteAcciones>> GetReporteAcciones();
         Task<bool> PostReporteAcciones(ReporteAcciones reporteAcciones);
+        Task<bool> PutReporteAcciones(ReporteAcciones reporteAcciones);
+        Task<bool> DeleteReporteAcciones(ReporteAcciones reporteAcciones);
     }
 }
