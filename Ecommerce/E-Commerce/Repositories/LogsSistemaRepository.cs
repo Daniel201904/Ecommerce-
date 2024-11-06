@@ -26,5 +26,17 @@ namespace E_Commerce.Repositories
             await context.SaveAsync();
             return true;
         }
+        public async Task<bool> PutLogsSistema(LogsSistema logsSistema)
+        {
+            context.LogsSistema.Update(logsSistema);
+            await context.SaveAsync();
+            return true;
+        }
+        public async Task<bool> DeleteLogsSistema(LogsSistema logsSistema)
+        {
+            context.LogsSistema.Remove(logsSistema);
+            await context.SaveAsync();
+            return true;
+        }
     }
 }

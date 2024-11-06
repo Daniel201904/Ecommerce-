@@ -5,5 +5,7 @@ namespace E_Commerce.Repositories.Interfaces
     {
         Task<List<Rol>> GetRol();
         Task<bool> PostRol(Rol rol);
+        Task<bool> PutRol(Rol rol);
+        Task<bool> DeleteRol(Rol rol);
     }
 }

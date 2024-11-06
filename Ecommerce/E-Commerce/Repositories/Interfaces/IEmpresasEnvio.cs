@@ -7,5 +7,7 @@ namespace E_Commerce.Repositories.Interfaces
         Task<List<EmpresasEnvio>> GetEmpresasEnvios();
 
         Task<bool> PostEmpresasEnvios(EmpresasEnvio empresasEnvio);
+        Task<bool> PutEmpresasEnvios(EmpresasEnvio empresasEnvio);
+        Task<bool> DeleteEmpresasEnvios(EmpresasEnvio empresasEnvio);
     }
 }

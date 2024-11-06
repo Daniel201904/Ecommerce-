@@ -5,5 +5,7 @@ namespace E_Commerce.Repositories.Interfaces
     {
         Task<List<TrackingEnvio>> GetTrackingEnvio();
         Task<bool> PostTrackingEnvio(TrackingEnvio trackingEnvio);
+        Task<bool> PutTrackingEnvio(TrackingEnvio trackingEnvio);
+        Task<bool> DeleteTrackingEnvio(TrackingEnvio trackingEnvio);
     }
 }

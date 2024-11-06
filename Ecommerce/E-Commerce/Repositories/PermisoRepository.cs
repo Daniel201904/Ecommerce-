@@ -26,5 +26,17 @@ namespace E_Commerce.Repositories
             await context.SaveAsync();
             return true;
         }
+        public async Task<bool> PutPermiso(Permiso permiso)
+        {
+            context.Permiso.Update(permiso);
+            await context.SaveAsync();
+            return true;
+        }
+        public async Task<bool> DeletePermiso(Permiso permiso)
+        {
+            context.Permiso.Remove(permiso);
+            await context.SaveAsync();
+            return true;
+        }
     }
 }

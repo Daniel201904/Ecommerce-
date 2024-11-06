@@ -6,5 +6,7 @@ namespace E_Commerce.Repositories.Interfaces
     {
         Task<List<Notificaciones>> GetNotificaciones();
         Task<bool> PostNotificaciones(Notificaciones notificaciones);
+        Task<bool> PutNotificaciones(Notificaciones notificaciones);
+        Task<bool> DeleteNotificaciones(Notificaciones notificaciones);
     }
 }

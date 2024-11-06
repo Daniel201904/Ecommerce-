@@ -7,5 +7,7 @@ namespace E_Commerce.Repositories.Interfaces
         Task<List<Envios>> GetEnvios();
 
         Task<bool> PostEnvios(Envios detallesPedidos);
+        Task<bool> PutEnvios(Envios envios);
+        Task<bool> DeleteEnvios(Envios envios);
     }
 }

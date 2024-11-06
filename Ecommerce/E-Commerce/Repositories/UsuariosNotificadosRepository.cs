@@ -26,5 +26,17 @@ namespace E_Commerce.Repositories
             await context.SaveAsync();
             return true;
         }
+        public async Task<bool> PutUsuariosNotificados(UsuariosNotificados usuariosNotificados)
+        {
+            context.UsuariosNotificados.Update(usuariosNotificados);
+            await context.SaveAsync();
+            return true;
+        }
+        public async Task<bool> DeleteUsuariosNotificados(UsuariosNotificados usuariosNotificados)
+        {
+            context.UsuariosNotificados.Remove(usuariosNotificados);
+            await context.SaveAsync();
+            return true;
+        }
     }
 }

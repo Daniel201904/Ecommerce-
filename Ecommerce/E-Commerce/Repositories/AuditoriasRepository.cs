@@ -25,5 +25,17 @@ namespace E_Commerce.Repositories
             await context.SaveChangesAsync();
             return true;
         }
+        public async Task<bool> PutAuditorias(Auditorias auditorias)
+        {
+           context.Auditorias.Update(auditorias);
+            await context.SaveAsync();
+            return true;
+        }
+        public async Task<bool> DeleteAuditorias(Auditorias auditorias)
+        {
+            context.Auditorias.Remove(auditorias);
+            await context.SaveAsync();
+            return true;
+        }
     }
 }

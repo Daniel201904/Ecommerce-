@@ -26,5 +26,17 @@ namespace E_Commerce.Repositories
             await context.SaveAsync();
             return true;
         }
+        public async Task<bool> PutRol(Rol rol)
+        {
+            context.Rol.Update(rol);
+            await context.SaveAsync();
+            return true;
+        }
+        public async Task<bool> DeleteRol(Rol rol)
+        {
+            context.Rol.Remove(rol);
+            await context.SaveAsync();
+            return true;
+        }
     }
 }

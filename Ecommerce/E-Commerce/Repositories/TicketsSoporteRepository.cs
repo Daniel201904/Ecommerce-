@@ -26,5 +26,17 @@ namespace E_Commerce.Repositories
             await context.SaveAsync();
             return true;
         }
+        public async Task<bool> PutTicketsSoporte(TicketsSoporte ticketsSoporte)
+        {
+            context.TicketsSoporte.Update(ticketsSoporte);
+            await context.SaveAsync();
+            return true;
+        }
+        public async Task<bool> DeleteTicketsSoporte(TicketsSoporte ticketsSoporte)
+        {
+            context.TicketsSoporte.Remove(ticketsSoporte);
+            await context.SaveAsync();
+            return true;
+        }
     }
 }

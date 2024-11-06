@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Fasire\\Desktop\\proyectoEcommerce\\1\\Ecommerce\\E-Commerce\\E-Commerce.csproj": {}
+    "B:\\JHOAN\\trabajos sena ADSO\\profesor-andres chavez\\codigo-proyecto\\Ecommerce\\E-Commerce\\E-Commerce.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Fasire\\Desktop\\proyectoEcommerce\\1\\Ecommerce\\E-Commerce\\E-Commerce.csproj": {
+    "B:\\JHOAN\\trabajos sena ADSO\\profesor-andres chavez\\codigo-proyecto\\Ecommerce\\E-Commerce\\E-Commerce.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Fasire\\Desktop\\proyectoEcommerce\\1\\Ecommerce\\E-Commerce\\E-Commerce.csproj",
+        "projectUniqueName": "B:\\JHOAN\\trabajos sena ADSO\\profesor-andres chavez\\codigo-proyecto\\Ecommerce\\E-Commerce\\E-Commerce.csproj",
         "projectName": "E-Commerce",
-        "projectPath": "C:\\Users\\Fasire\\Desktop\\proyectoEcommerce\\1\\Ecommerce\\E-Commerce\\E-Commerce.csproj",
-        "packagesPath": "C:\\Users\\Fasire\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Fasire\\Desktop\\proyectoEcommerce\\1\\Ecommerce\\E-Commerce\\obj\\",
+        "projectPath": "B:\\JHOAN\\trabajos sena ADSO\\profesor-andres chavez\\codigo-proyecto\\Ecommerce\\E-Commerce\\E-Commerce.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "B:\\JHOAN\\trabajos sena ADSO\\profesor-andres chavez\\codigo-proyecto\\Ecommerce\\E-Commerce\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Fasire\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,7 +38,13 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
         "net7.0": {
@@ -81,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100-rc.1.24452.12\\RuntimeIdentifierGraph.json"
         }
       }
     }

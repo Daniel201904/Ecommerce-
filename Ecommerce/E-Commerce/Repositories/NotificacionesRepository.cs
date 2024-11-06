@@ -26,5 +26,17 @@ namespace E_Commerce.Repositories
             await context.SaveAsync();
             return true;
         }
+        public async Task<bool> PutNotificaciones(Notificaciones notificaciones)
+        {
+            context.Notificaciones.Update(notificaciones);
+            await context.SaveAsync();
+            return true;
+        }
+        public async Task<bool> DeleteNotificaciones(Notificaciones notificaciones)
+        {
+            context.Notificaciones.Remove(notificaciones);
+            await context.SaveAsync();
+            return true;
+        }
     }
 }
