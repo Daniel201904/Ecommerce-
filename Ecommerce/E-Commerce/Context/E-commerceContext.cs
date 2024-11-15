@@ -1,4 +1,5 @@
 ﻿using Base_de_datos;
+using E_Commerce.Controllers;
 using E_Commerce.Models;
 using Microsoft.EntityFrameworkCore;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -11,7 +12,7 @@ namespace E_Commerce.Context
         {
         }
 
-        public DbSet<Auditorias> Auditorias { get; set; }
+        public DbSet<AuditoriasControler> Auditorias { get; set; }
         public DbSet<Categoria> Categoria { get; set; }
         public DbSet<Comentarios> Comentarios { get; set; }
         public DbSet<Cupones> Cupones { get; set; }
@@ -48,13 +49,13 @@ namespace E_Commerce.Context
         private void EntityConfuguration(ModelBuilder modelBuilder)
         {
             //tabla auditorias
-            modelBuilder.Entity<Auditorias>().ToTable("Auditorias");
-            modelBuilder.Entity<Auditorias>().HasKey(u => u.Id);
-            modelBuilder.Entity<Auditorias>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
-            modelBuilder.Entity<Auditorias>().Property(u => u.UsuarioId).HasColumnName("UsuarioId");
-            modelBuilder.Entity<Auditorias>().Property(u => u.Usuario).HasColumnName("Usuario");
-            modelBuilder.Entity<Auditorias>().Property(u => u.Accion).HasColumnName("Accion");
-            modelBuilder.Entity<Auditorias>().Property(u => u.FechaAccion).HasColumnName("FechaAccion");
+            modelBuilder.Entity<AuditoriasControler>().ToTable("Auditorias");
+            modelBuilder.Entity<AuditoriasControler>().HasKey(u => u.Id);
+            modelBuilder.Entity<AuditoriasControler>().Property(u => u.Id).HasColumnName("Id").ValueGeneratedOnAdd();
+            modelBuilder.Entity<AuditoriasControler>().Property(u => u.UsuarioId).HasColumnName("UsuarioId");
+            modelBuilder.Entity<AuditoriasControler>().Property(u => u.Usuario).HasColumnName("Usuario");
+            modelBuilder.Entity<AuditoriasControler>().Property(u => u.Accion).HasColumnName("Accion");
+            modelBuilder.Entity<AuditoriasControler>().Property(u => u.FechaAccion).HasColumnName("FechaAccion");
 
             //tabla categoria
             modelBuilder.Entity<Categoria>().ToTable("Categoria");
