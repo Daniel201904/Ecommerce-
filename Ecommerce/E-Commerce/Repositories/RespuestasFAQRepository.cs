@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce.Repositories
 {
-    public class RespuestaFAQRepository : IRespuestaFAQ
+    public class RespuestasFAQRepository : IRespuestasFAQ
     {
         private readonly E_commerceContext context;
 
-        public RespuestaFAQRepository(E_commerceContext context)
+        public RespuestasFAQRepository(E_commerceContext context)
         {
             this.context = context;
         }

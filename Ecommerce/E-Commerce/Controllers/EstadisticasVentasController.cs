@@ -41,6 +41,74 @@ namespace E_Commerce.Controllers
             {
                 return BadRequest(ex.Message);
             }
+
+        }
+        [HttpPut("PutEstadisticasVentas/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> PutAuditorias(int id, [FromBody] EstadisticasVentas estadisticasVentas)
+        {
+            if ( estadisticasVentas == null || estadisticasVentas.Id != id)
+                return BadRequest("El ID de la URL no coincide con el ID del modelo o el modelo es nulo.");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                var estadisticasVentasList = await _estadisticasVentas.GetEstadisticasVentas();
+                var exists = estadisticasVentasList.Any(a => a.Id == id);
+
+                if (!exists)
+                    return NotFound("El recurso no existe.");
+
+                var response = await _estadisticasVentas.PutEstadisticasVentas(estadisticasVentas);
+
+                if (response)
+                    return Ok("Actualizado correctamente.");
+                else
+                    return BadRequest("No se pudo actualizar el recurso.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocurrió un error inesperado.");
+            }
+        }
+
+        [HttpDelete("DeleteEstadisticasVentas/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> DeleteEstadisticasVentas(int id, [FromBody] EstadisticasVentas estadisticasVentas)
+        {
+            if (estadisticasVentas == null || estadisticasVentas.Id != id)
+                return BadRequest("El ID de la URL no coincide con el ID del modelo o el modelo es nulo.");
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                var estadisticasVentasList = await _estadisticasVentas.GetEstadisticasVentas();
+                var exists = estadisticasVentasList.Any(a => a.Id == id);
+
+                if (!exists)
+                    return NotFound("El recurso no existe.");
+
+                var response = await _estadisticasVentas.DeleteEstadisticasVentas(estadisticasVentas);
+
+                if (response)
+                    return Ok("Actualizado correctamente.");
+                else
+                    return BadRequest("No se pudo actualizar el recurso.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Ocurrió un error inesperado.");
+            }
         }
     }
 }

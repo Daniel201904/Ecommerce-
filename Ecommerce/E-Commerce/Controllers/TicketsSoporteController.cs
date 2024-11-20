@@ -6,34 +6,34 @@ namespace E_Commerce.Controllers
 {
     [Route("api/controlller")]
     [ApiController]
-    public class InventarioController : ControllerBase
+    public class TicketsSoporteController : Controller
     {
-        private readonly IInventarios _inventarios;
-        public InventarioController(IInventarios inventarios)
+        private readonly ITicketsSoporte _ticketsSoporte;
+        public TicketsSoporteController(ITicketsSoporte tikectsSoporte)
         {
-            _inventarios = inventarios;
+            _ticketsSoporte = tikectsSoporte;
         }
 
-        [HttpGet("GetInventarios")]
+        [HttpGet("GetTicketsSoporte")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        public async Task<IActionResult> GetInventarios()
+        public async Task<IActionResult> GetTicketsSoporte()
         {
-            var response = await _inventarios.GetInventarios();
+            var response = await _ticketsSoporte.GetTicketsSoporte();
             return Ok(response);
         }
 
-        [HttpPost("PostInventarios")]
+        [HttpPost("PostTicketsSoporte")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> PostInventarios([FromBody] Inventarios inventarios)
+        public async Task<IActionResult> PostTicketsSoporte([FromBody] TicketsSoporte tikectsSoporte)
         {
             try
             {
-                var response = await _inventarios.PostInventarios(inventarios);
+                var response = await _ticketsSoporte.PostTicketsSoporte(tikectsSoporte);
                 if (response == true)
-                    return Ok("El nuevo inventario a sido agregado correctamente");
+                    return Ok("Se ha agregado un ticket de soporte correctamente");
                 else
                     return BadRequest(response);
             }
@@ -42,28 +42,28 @@ namespace E_Commerce.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPut("PutInventarios/{id}")]
+
+        [HttpPut("PutTicketsSoporte/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> PutInventarios(int id, [FromBody] Inventarios inventarios)
+        public async Task<IActionResult> PutTicketsSoporte(int id, [FromBody] TicketsSoporte ticketsSoporte) 
         {
-            if (inventarios == null || inventarios.Id != id)
+            if (ticketsSoporte == null || ticketsSoporte.Id != id)
                 return BadRequest("El ID de la URL no coincide con el ID del modelo o el modelo es nulo.");
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
             try
             {
-                var inventariosList = await _inventarios.GetInventarios();
-                var exists = inventariosList.Any(a => a.Id == id);
+                var ticketsSoporteList = await _ticketsSoporte.GetTicketsSoporte();
+                var exists = ticketsSoporteList.Any(a => a.Id == id);
 
                 if (!exists)
                     return NotFound("El recurso no existe.");
 
-                var response = await _inventarios.PutInventarios(inventarios);
+                var response = await _ticketsSoporte.PutTicketsSoporte(ticketsSoporte);
 
                 if (response)
                     return Ok("Actualizado correctamente.");
@@ -76,28 +76,27 @@ namespace E_Commerce.Controllers
             }
         }
 
-        [HttpDelete("DeleteInventarios/{id}")]
+        [HttpDelete("DeleteTicketsSoporte/{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> DeleteInventarios(int id, [FromBody] Inventarios inventarios)
+        public async Task<IActionResult> DeleteTicketsSoporte(int id, [FromBody] TicketsSoporte ticketsSoporte)
         {
-            if (inventarios == null || inventarios.Id != id)
+            if (ticketsSoporte == null || ticketsSoporte.Id != id)
                 return BadRequest("El ID de la URL no coincide con el ID del modelo o el modelo es nulo.");
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-
             try
             {
-                var inventariosList = await _inventarios.GetInventarios();
-                var exists = inventariosList.Any(a => a.Id == id);
+                var ticketsSoporteList = await _ticketsSoporte.GetTicketsSoporte();
+                var exists = ticketsSoporteList.Any(a => a.Id == id);
 
                 if (!exists)
                     return NotFound("El recurso no existe.");
 
-                var response = await _inventarios.DeleteInventarios(inventarios);
+                var response = await _ticketsSoporte.PutTicketsSoporte(ticketsSoporte);
 
                 if (response)
                     return Ok("Actualizado correctamente.");

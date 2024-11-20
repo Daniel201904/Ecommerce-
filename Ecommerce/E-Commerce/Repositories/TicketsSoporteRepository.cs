@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce.Repositories
 {
-    public class TicketsSoporteRepository : ITikectsSoporte
+    public class TicketsSoporteRepository : ITicketsSoporte
     {
         private readonly E_commerceContext context;
 

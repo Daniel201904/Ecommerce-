@@ -1,7 +1,7 @@
 ﻿using E_Commerce.Models;
 namespace E_Commerce.Repositories.Interfaces
 {
-    public interface ITikectsSoporte
+    public interface ITicketsSoporte
     {
         Task<List<TicketsSoporte>> GetTicketsSoporte();
         Task<bool> PostTicketsSoporte(TicketsSoporte ticketsSoporte);

@@ -1,7 +1,7 @@
 ﻿using E_Commerce.Models;
 namespace E_Commerce.Repositories.Interfaces
 {
-    public interface IRespuestaFAQ
+    public interface IRespuestasFAQ
     {
         Task<List<RespuestasFAQ>> GetRespuestasFAQ();
         Task<bool> PostRespuestaFAQ(RespuestasFAQ respuestasFAQ);
