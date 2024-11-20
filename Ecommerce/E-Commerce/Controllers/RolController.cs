@@ -96,7 +96,7 @@ namespace E_Commerce.Controllers
                 if (!exists)
                     return NotFound("El recurso no existe.");
 
-                var response = await _rol.PutRol(rol);
+                var response = await _rol.DeleteRol(rol);
 
                 if (response)
                     return Ok("Actualizado correctamente.");

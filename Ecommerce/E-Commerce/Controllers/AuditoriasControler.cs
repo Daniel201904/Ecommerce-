@@ -13,7 +13,7 @@ namespace E_Commerce.Controllers
     public class AuditoriasControler : ControllerBase
     {
         private readonly IAuditorias _auditorias;
-        public AuditoriasControler(IAuditoria   s auditorias)
+        public AuditoriasControler(IAuditorias auditorias)
         {
             _auditorias = auditorias;
         }

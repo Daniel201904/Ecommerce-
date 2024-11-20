@@ -96,7 +96,7 @@ namespace E_Commerce.Controllers
                 if (!exists)
                     return NotFound("El recurso no existe.");
 
-                var response = await _ticketsSoporte.PutTicketsSoporte(ticketsSoporte);
+                var response = await _ticketsSoporte.DeleteTicketsSoporte(ticketsSoporte);
 
                 if (response)
                     return Ok("Actualizado correctamente.");

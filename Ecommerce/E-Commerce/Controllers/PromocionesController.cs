@@ -96,7 +96,7 @@ namespace E_Commerce.Controllers
                 if (!exists)
                     return NotFound("El recurso no existe.");
 
-                var response = await _promociones.PutPromociones(promociones);
+                var response = await _promociones.DeletePromociones(promociones);
 
                 if (response)
                     return Ok("Actualizado correctamente.");

@@ -98,7 +98,7 @@ namespace E_Commerce.Controllers
                 if (!exists)
                     return NotFound("El recurso no existe.");
 
-                var response = await _respuestasFAQ.PutRespuestasFAQ(respuestaFAQ);
+                var response = await _respuestasFAQ.DeleteRespuestasFAQ(respuestaFAQ);
 
                 if (response)
                     return Ok("Actualizado correctamente.");

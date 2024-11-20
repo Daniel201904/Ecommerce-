@@ -97,7 +97,7 @@ namespace E_Commerce.Controllers
                 if (!exists)
                     return NotFound("El recurso no existe.");
 
-                var response = await _productos.PutProductos(productos);
+                var response = await _productos.DeleteProductos(productos);
 
                 if (response)
                     return Ok("Actualizado correctamente.");

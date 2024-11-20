@@ -96,7 +96,7 @@ namespace E_Commerce.Controllers
                 if (!exists)
                     return NotFound("El recurso no existe.");
 
-                var response = await _tokens.PutTokens(tokens);
+                var response = await _tokens.DeleteTokens(tokens);
 
                 if (response)
                     return Ok("Actualizado correctamente.");

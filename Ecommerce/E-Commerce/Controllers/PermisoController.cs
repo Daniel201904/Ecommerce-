@@ -98,7 +98,7 @@ namespace E_Commerce.Controllers
                 if (!exists)
                     return NotFound("El recurso no existe.");
 
-                var response = await _permiso.PutPermiso(permiso);
+                var response = await _permiso.DeletePermiso(permiso);
 
                 if (response)
                     return Ok("Actualizado correctamente.");
