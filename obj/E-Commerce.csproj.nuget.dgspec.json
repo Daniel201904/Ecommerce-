@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\APRENDIZ\\Source\\Repos\\Ecommerce-\\Ecommerce\\E-Commerce\\E-Commerce.csproj": {}
+    "C:\\repos\\Ecommerce\\E-Commerce\\E-Commerce.csproj": {}
   },
   "projects": {
-    "C:\\Users\\APRENDIZ\\Source\\Repos\\Ecommerce-\\Ecommerce\\E-Commerce\\E-Commerce.csproj": {
+    "C:\\repos\\Ecommerce\\E-Commerce\\E-Commerce.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\APRENDIZ\\Source\\Repos\\Ecommerce-\\Ecommerce\\E-Commerce\\E-Commerce.csproj",
+        "projectUniqueName": "C:\\repos\\Ecommerce\\E-Commerce\\E-Commerce.csproj",
         "projectName": "E-Commerce",
-        "projectPath": "C:\\Users\\APRENDIZ\\Source\\Repos\\Ecommerce-\\Ecommerce\\E-Commerce\\E-Commerce.csproj",
+        "projectPath": "C:\\repos\\Ecommerce\\E-Commerce\\E-Commerce.csproj",
         "packagesPath": "C:\\Users\\APRENDIZ\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\APRENDIZ\\Source\\Repos\\Ecommerce-\\Ecommerce\\E-Commerce\\obj\\",
+        "outputPath": "C:\\repos\\Ecommerce\\E-Commerce\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\APRENDIZ\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t8Y0tKlnJos=",
+  "dgSpecHash": "QiGvEJHvemU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\APRENDIZ\\Source\\Repos\\Ecommerce-\\Ecommerce\\E-Commerce\\E-Commerce.csproj",
+  "projectFilePath": "C:\\repos\\Ecommerce\\E-Commerce\\E-Commerce.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\APRENDIZ\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\APRENDIZ\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
