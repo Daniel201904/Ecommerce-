@@ -1,0 +1,254 @@
+-- ============================================
+-- MICROSERVICIO DE USUARIOS
+-- ============================================
+CREATE TABLE Roles (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Usuarios (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100) NOT NULL,
+    Correo NVARCHAR(100) NOT NULL UNIQUE,
+    Contraseña NVARCHAR(255) NOT NULL,
+    Telefono NVARCHAR(15),
+    Direccion NVARCHAR(255),
+    FechaCreacion DATETIME DEFAULT GETDATE(),
+    RolId INT FOREIGN KEY REFERENCES Roles(Id)
+);
+
+-- ============================================
+-- MICROSERVICIO DE PRODUCTOS
+-- ============================================
+CREATE TABLE Categorias (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Productos (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100) NOT NULL,
+    Descripcion NVARCHAR(500),
+    Precio DECIMAL(10,2) NOT NULL,
+    Stock INT NOT NULL,
+    FechaCreacion DATETIME DEFAULT GETDATE(),
+    CategoriaId INT FOREIGN KEY REFERENCES Categorias(Id),
+    VendedorId INT FOREIGN KEY REFERENCES Usuarios(Id)
+);
+
+CREATE TABLE ImagenesProductos (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    ProductoId INT FOREIGN KEY REFERENCES Productos(Id),
+    UrlImagen NVARCHAR(500) NOT NULL
+);
+
+-- ============================================
+-- MICROSERVICIO DE PEDIDOS
+-- ============================================
+CREATE TABLE Pedidos (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    ClienteId INT FOREIGN KEY REFERENCES Usuarios(Id),
+    Estado NVARCHAR(50) NOT NULL,
+    Total DECIMAL(10,2) NOT NULL,
+    FechaPedido DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE DetallePedidos (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    PedidoId INT FOREIGN KEY REFERENCES Pedidos(Id),
+    ProductoId INT FOREIGN KEY REFERENCES Productos(Id),
+    Cantidad INT NOT NULL,
+    PrecioUnitario DECIMAL(10,2) NOT NULL
+);
+
+-- ============================================
+-- MICROSERVICIO DE INVENTARIOS
+-- ============================================
+CREATE TABLE Inventarios (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    ProductoId INT FOREIGN KEY REFERENCES Productos(Id),
+    Cantidad INT NOT NULL,
+    UltimaActualizacion DATETIME DEFAULT GETDATE()
+);
+
+-- ============================================
+-- MICROSERVICIO DE COMENTARIOS Y VALORACIONES
+-- ============================================
+CREATE TABLE Comentarios (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UsuarioId INT FOREIGN KEY REFERENCES Usuarios(Id),
+    ProductoId INT FOREIGN KEY REFERENCES Productos(Id),
+    ComentarioTexto NVARCHAR(1000),
+    FechaComentario DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Valoraciones (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UsuarioId INT FOREIGN KEY REFERENCES Usuarios(Id),
+    ProductoId INT FOREIGN KEY REFERENCES Productos(Id),
+    Valor INT NOT NULL CHECK (Valor BETWEEN 1 AND 5),
+    FechaValoracion DATETIME DEFAULT GETDATE()
+);
+
+-- ============================================
+-- MICROSERVICIO DE NOTIFICACIONES
+-- ============================================
+CREATE TABLE Notificaciones (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Titulo NVARCHAR(100) NOT NULL,
+    Mensaje NVARCHAR(1000),
+    FechaEnvio DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE UsuariosNotificados (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UsuarioId INT FOREIGN KEY REFERENCES Usuarios(Id),
+    NotificacionId INT FOREIGN KEY REFERENCES Notificaciones(Id),
+    Leido BIT DEFAULT 0,
+    FechaLeido DATETIME
+);
+
+-- ============================================
+-- MICROSERVICIO DE ESTADÍSTICAS
+-- ============================================
+CREATE TABLE EstadisticasVentas (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    ProductoId INT FOREIGN KEY REFERENCES Productos(Id),
+    CantidadVendida INT NOT NULL,
+    IngresosGenerados DECIMAL(10,2) NOT NULL,
+    FechaReporte DATETIME DEFAULT GETDATE()
+);
+
+-- ============================================
+-- MICROSERVICIO DE PAGOS
+-- ============================================
+CREATE TABLE Pagos (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    PedidoId INT FOREIGN KEY REFERENCES Pedidos(Id),
+    Monto DECIMAL(10,2) NOT NULL,
+    MetodoPago NVARCHAR(50) NOT NULL,
+    FechaPago DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE Transacciones (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    PagoId INT FOREIGN KEY REFERENCES Pagos(Id),
+    CodigoTransaccion NVARCHAR(100) NOT NULL,
+    EstadoTransaccion NVARCHAR(50) NOT NULL,
+    FechaTransaccion DATETIME DEFAULT GETDATE()
+);
+
+-- ============================================
+-- MICROSERVICIO DE DESCUENTOS Y PROMOCIONES
+-- ============================================
+CREATE TABLE Promociones (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100),
+    Descuento DECIMAL(5,2),
+    FechaInicio DATETIME,
+    FechaFin DATETIME
+);
+
+CREATE TABLE Cupones (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Codigo NVARCHAR(50) UNIQUE,
+    Descuento DECIMAL(5,2),
+    FechaExpiracion DATETIME
+);
+
+CREATE TABLE ProductosPromocionados (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    ProductoId INT FOREIGN KEY REFERENCES Productos(Id),
+    PromocionId INT FOREIGN KEY REFERENCES Promociones(Id)
+);
+
+-- ============================================
+-- MICROSERVICIO DE SOPORTE Y AYUDA
+-- ============================================
+CREATE TABLE TicketsSoporte (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UsuarioId INT FOREIGN KEY REFERENCES Usuarios(Id),
+    Titulo NVARCHAR(100),
+    Descripcion NVARCHAR(1000),
+    Estado NVARCHAR(50),
+    FechaCreacion DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE RespuestasFAQ (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Pregunta NVARCHAR(255),
+    Respuesta NVARCHAR(1000)
+);
+
+-- ============================================
+-- MICROSERVICIO DE REPORTES Y AUDITORÍA
+-- ============================================
+CREATE TABLE Auditorias (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UsuarioId INT FOREIGN KEY REFERENCES Usuarios(Id),
+    Accion NVARCHAR(255),
+    FechaAccion DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE LogsSistema (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nivel NVARCHAR(50),
+    Mensaje NVARCHAR(1000),
+    FechaLog DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE ReportesAcciones (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UsuarioId INT FOREIGN KEY REFERENCES Usuarios(Id),
+    Descripcion NVARCHAR(1000),
+    FechaReporte DATETIME DEFAULT GETDATE()
+);
+
+-- ============================================
+-- MICROSERVICIO DE ENVÍOS
+-- ============================================
+CREATE TABLE Envios (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    PedidoId INT FOREIGN KEY REFERENCES Pedidos(Id),
+    EmpresaEnvio NVARCHAR(100),
+    NumeroGuia NVARCHAR(50),
+    EstadoEnvio NVARCHAR(50),
+    FechaEnvio DATETIME DEFAULT GETDATE(),
+    FechaEntrega DATETIME
+);
+
+CREATE TABLE EmpresasEnvio (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(100),
+    Contacto NVARCHAR(100)
+);
+
+CREATE TABLE TrackingEnvio (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    EnvioId INT FOREIGN KEY REFERENCES Envios(Id),
+    Estado NVARCHAR(50),
+    Ubicacion NVARCHAR(255),
+    Fecha DATETIME DEFAULT GETDATE()
+);
+
+-- ============================================
+-- MICROSERVICIO DE INTEGRACIÓN CON REDES SOCIALES
+-- ============================================
+CREATE TABLE RedesSociales (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Nombre NVARCHAR(50)
+);
+
+CREATE TABLE Compartidos (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UsuarioId INT FOREIGN KEY REFERENCES Usuarios(Id),
+    ProductoId INT FOREIGN KEY REFERENCES Productos(Id),
+    FechaCompartido DATETIME DEFAULT GETDATE()
+);
+
+CREATE TABLE AutenticacionesSociales (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    UsuarioId INT FOREIGN KEY REFERENCES Usuarios(Id),
+    Proveedor NVARCHAR(50),
+    IdProveedor NVARCHAR(100)
+);
