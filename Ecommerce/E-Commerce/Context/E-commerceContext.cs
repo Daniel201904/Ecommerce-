@@ -1,21 +1,4 @@
-﻿
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-using E_Commerce.Controllers;
+﻿using E_Commerce.Controllers;
 using E_Commerce.Models;
 using Microsoft.EntityFrameworkCore;
 using static System.Runtime.InteropServices.JavaScript.JSType;
